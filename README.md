@@ -1,4 +1,4 @@
-# Excel-Weekly-Meal-Plan-Shopping-List-Creator
+# Excel Weekly Meal Plan Shopping List Creator
 
 This is a spreadsheet that contains a template for creating a weekly meal plan. Within the template, you can enter meals and food that you'd like to have on the menu.
 
