@@ -1,4 +1,5 @@
 # Excel Weekly Meal Plan Shopping List Creator
+[![Code Review](http://www.zomis.net/codereview/shield/?qid=117529)](http://codereview.stackexchange.com/q/117529/75587)
 
 This is a spreadsheet that contains a template for creating a weekly meal plan. Within the template, you can enter meals and food that you'd like to have on the menu.
 
