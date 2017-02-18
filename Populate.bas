@@ -26,7 +26,7 @@ Public Sub populate_shoppinglist()
     Set ShoppingArea = wsShopping.Columns(1)
     ShoppingArea.ClearContents
     
-    Dim Ingredients() As String
+    Dim ingredients() As String
     Dim ShoppingRow As Long
     Dim ShoppingLastRow As Long
     Dim ArrayItem As Long
@@ -43,7 +43,9 @@ Public Sub populate_shoppinglist()
     ShoppingRow = FindIngredients(wsDinner, DinnerArea, ShoppingRow)
  
     'Many food items have the same ingredients
-    wsShopping.Range("A:A").RemoveDuplicates Columns:=1, Header:=xlNo
+    'VBA 2016 does not properly work with .RemoveDuplicates
+    OSXRemoveDuplicates wsShopping
+    'wsShopping.Range("A:A").RemoveDuplicates Columns:=1, Header:=xlNo
 
     'Essentially checking for no selections on wsPlan but checking wsShopping is easier because of the data validation
     If IsEmpty(wsShopping.Range("A1")) Then
@@ -52,10 +54,10 @@ Public Sub populate_shoppinglist()
     End If
     
     ShoppingLastRow = wsShopping.Cells(Rows.Count, 1).End(xlUp).Row
-    ReDim Ingredients(1 To ShoppingLastRow)
+    ReDim ingredients(1 To ShoppingLastRow)
     
     For ArrayItem = 1 To ShoppingLastRow
-        Ingredients(ArrayItem) = wsShopping.Cells(ArrayItem, 1)
+        ingredients(ArrayItem) = wsShopping.Cells(ArrayItem, 1)
     Next
     
     ShoppingRow = 1
@@ -64,7 +66,7 @@ Public Sub populate_shoppinglist()
 Populate:
         On Error GoTo Finish
         For ListRow = 14 To 29
-            wsPlan.Cells(ListRow, ListColumn) = Ingredients(ShoppingRow)
+            wsPlan.Cells(ListRow, ListColumn) = ingredients(ShoppingRow)
             ShoppingRow = ShoppingRow + 1
         Next
     
@@ -84,7 +86,7 @@ Public Function FindIngredients(ByVal IngredientSheet As Worksheet, ByVal FoodRa
 
 
     Dim FoodSelection As Range
-    Dim Ingredient As Range
+    Dim ingredient As Range
     
     Dim ColumnNumber As Long
     Dim RowNumber As Long
@@ -93,10 +95,10 @@ Public Function FindIngredients(ByVal IngredientSheet As Worksheet, ByVal FoodRa
     For Each FoodSelection In FoodRange
     
         If FoodSelection.Value <> "" Then
-            Set Ingredient = IngredientSheet.Range("A:A").Find(FoodSelection.Value, LookIn:=xlValues, lookat:=xlWhole)
-            If Not Ingredient Is Nothing Then
-                RowNumber = Ingredient.Row
-                ColumnNumber = Ingredient.End(xlToRight).Column
+            Set ingredient = IngredientSheet.Range("A:A").Find(FoodSelection.Value, LookIn:=xlValues, lookat:=xlWhole)
+            If Not ingredient Is Nothing Then
+                RowNumber = ingredient.Row
+                ColumnNumber = ingredient.End(xlToRight).column
                     For ColumnShoppingRow = 2 To ColumnNumber
                         wsShopping.Cells(ShoppingRow, 1) = IngredientSheet.Cells(RowNumber, ColumnShoppingRow)
                         ShoppingRow = ShoppingRow + 1
@@ -106,3 +108,23 @@ Public Function FindIngredients(ByVal IngredientSheet As Worksheet, ByVal FoodRa
     Next FoodSelection
     FindIngredients = ShoppingRow
 End Function
+
+Private Sub OSXRemoveDuplicates(ByVal tempSheet As Worksheet)
+    Dim lastRow As Long
+    lastRow = tempSheet.Cells(Rows.Count, 1).End(xlUp).Row
+    Dim varList() As Variant
+    Dim ingredient
+    
+    varList = tempSheet.Range(tempSheet.Cells(1, 1), tempSheet.Cells(lastRow, 1))
+    tempSheet.UsedRange.Clear
+    Dim ingredients As Collection
+    Set ingredients = New Collection
+    Dim index As Long
+    On Error Resume Next
+    For Each ingredient In varList
+        ingredients.Add ingredient, ingredient
+    Next
+    For index = 1 To ingredients.Count
+        tempSheet.Cells(index, 1) = ingredients(index)
+    Next
+End Sub
