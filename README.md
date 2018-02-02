@@ -13,3 +13,7 @@ This project grew out of the hassle of planning weekly meals prior to going food
 Since we're using excel, I thought I would play around with entering her recipes' ingredients into a database that could be accessed to create a shopping list - speeding up the overall food shopping task.
 
 This could be expanded to include cooking recipes as well as macronutrients and calorie counts for weekly nutrition tracking goals.
+
+## If you'd like to fork to work on https://github.com/RaymondWise/Excel-Weekly-Meal-Plan-Shopping-List-Generator/projects/1
+
+## Please fork https://github.com/RaymondWise/Excel-Weekly-Meal-Plan-Shopping-List-Generator/tree/Copy-that-is-not-fully-functioning
