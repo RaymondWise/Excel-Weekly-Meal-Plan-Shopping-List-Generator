@@ -14,6 +14,9 @@ Since we're using excel, I thought I would play around with entering her recipes
 
 This could be expanded to include cooking recipes as well as macronutrients and calorie counts for weekly nutrition tracking goals.
 
-## If you'd like to fork to work on https://github.com/RaymondWise/Excel-Weekly-Meal-Plan-Shopping-List-Generator/projects/1
+-------
 
-## Please fork https://github.com/RaymondWise/Excel-Weekly-Meal-Plan-Shopping-List-Generator/tree/Copy-that-is-not-fully-functioning
+# Contributing
+### If you'd like to fork to work on [The Ingredient Amount Project](https://github.com/RaymondWise/Excel-Weekly-Meal-Plan-Shopping-List-Generator/projects/1)
+
+### Please fork https://github.com/RaymondWise/Excel-Weekly-Meal-Plan-Shopping-List-Generator/tree/Copy-that-is-not-fully-functioning
