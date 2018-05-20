@@ -6,6 +6,8 @@ If you're looking for the **working version**, see [master branch](https://githu
 
 This branch is for **work in progress** and is not fully functioning.
 
+### Most features have been implemented. Bug testing to be done. 
+
 [Current Project](https://github.com/RaymondWise/Excel-Weekly-Meal-Plan-Shopping-List-Generator/projects/1)
 
 Follow some reviews on CodeReview StackExchange
